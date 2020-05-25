@@ -1,10 +1,14 @@
 import { createReducer } from "../../../core/reduxUtils";
+import { getUnivercitiesHandlers } from "./getUnivercities"
+import { IMainState } from "../types";
 
-const initialState = {
+const initialState: IMainState = {
   data: []
 };
 
-const handlers = {};
+const handlers = {
+  ...getUnivercitiesHandlers
+};
 
 const mainReducer = createReducer(initialState, handlers);
 
