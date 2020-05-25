@@ -1,18 +1,18 @@
 import * as constants from "../constants";
-import { IMainState } from "../types";
+import { IEducationState } from "../types";
 
-const getUnivercitiesBegin = (state: IMainState) => ({
+const getUnivercitiesBegin = (state: IEducationState) => ({
     ...state,
     univercitiesLoading: true,
 });
 
-const getUnivercitiesSuccess = (state: IMainState, action: any) => ({
+const getUnivercitiesSuccess = (state: IEducationState, action: any) => ({
     ...state,
     data: action.payload,
     univercitiesLoading: false,
 });
 
-const getUnivercitiesFailure = (state: IMainState, action: any) => ({
+const getUnivercitiesFailure = (state: IEducationState, action: any) => ({
     ...state,
     errors: action.payload,
     univercitiesLoading: true,
