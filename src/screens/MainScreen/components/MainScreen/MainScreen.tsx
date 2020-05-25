@@ -1,5 +1,4 @@
 import * as React from "react";
-import { withRouter } from "react-router-dom"; 
 
 interface IProps {}
 
@@ -11,4 +10,4 @@ const MainScreen: React.FC<Props> = (props: Props) => {
     );
 };
 
-export default withRouter(MainScreen);
+export default MainScreen;

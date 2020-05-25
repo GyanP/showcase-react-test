@@ -1,3 +1,3 @@
-export interface IMainState {
+export interface IEducationState {
     readonly data: [];
 }

@@ -1,8 +1,8 @@
 import { createReducer } from "../../../core/reduxUtils";
 import { getUnivercitiesHandlers } from "./getUnivercities"
-import { IMainState } from "../types";
+import { IEducationState } from "../types";
 
-const initialState: IMainState = {
+const initialState: IEducationState = {
   data: []
 };
 
@@ -10,6 +10,6 @@ const handlers = {
   ...getUnivercitiesHandlers
 };
 
-const mainReducer = createReducer(initialState, handlers);
+const educationReducer = createReducer(initialState, handlers);
 
-export default mainReducer;
+export default educationReducer;
