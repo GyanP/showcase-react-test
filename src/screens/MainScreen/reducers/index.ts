@@ -3,7 +3,9 @@ import { getUnivercitiesHandlers } from "./getUnivercities"
 import { IEducationState } from "../types";
 
 const initialState: IEducationState = {
-  data: []
+  data: [],
+  errors: {},
+  universities: []
 };
 
 const handlers = {
