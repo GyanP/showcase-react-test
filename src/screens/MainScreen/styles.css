@@ -1,0 +1,17 @@
+.educationBody{
+    width: auto;
+    height: 250px;
+    margin-top: 20px;
+    display: block;
+    background-color: lightgray;  
+}
+.sideNavBody{
+    width: auto;
+    height: 450px;
+    margin-top: 20px;
+    display: block;
+    background-color: lightgray;
+}
+.select {
+    margin: 0.5rem 0;
+}
