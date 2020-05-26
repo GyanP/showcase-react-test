@@ -2,8 +2,15 @@ import React, { useState } from 'react';
 import AsyncSelect from 'react-select/async';
 
 type Props = {
+    name: string;
     options: any;
+    onSelect: (key: string, value: string) => void;
     getOptions: (value: string) => void;
+}
+
+interface IOption {
+    value: string,
+    label: string
 }
 
 type State = {
@@ -12,6 +19,7 @@ type State = {
 
 const Select: React.FC<Props> = (props: Props, state: State) => {
     const[inputValue, setInputValue] = useState<string>("");
+    const[selectedValue, setSelectedValue] = useState<IOption>({value: "", label: ""});
     
     const filtersOptions = () => {
         return (props.options && props.options.length > 0) 
@@ -33,6 +41,11 @@ const Select: React.FC<Props> = (props: Props, state: State) => {
         props.getOptions(inputValue);
         return inputValue;
     };
+
+    const handleSelect = (selected: any) => {
+        setSelectedValue(selected);
+        props.onSelect(props.name, selected.value);
+    }
     
     return (
         <div className="select">
@@ -40,6 +53,7 @@ const Select: React.FC<Props> = (props: Props, state: State) => {
                 cacheOptions
                 loadOptions={loadOptions}
                 defaultOptions
+                onChange={handleSelect}
                 onInputChange={handleInputChange}
             />
         </div>

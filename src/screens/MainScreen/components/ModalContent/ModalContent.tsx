@@ -1,12 +1,15 @@
 import * as React from "react";
 import { useState } from "react";
-import { Label, Input, Button } from "../../../../sharedComponents";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { Label, Input, Button, Textarea } from "../../../../sharedComponents";
 import { IEducation } from "../../types";
 import { setEducationDetails } from "../../actions";
 import { Select } from "../AsyncSelect";
 
 interface IProps {
     universities: any;
+    handleToggle: () => void;
     setEducationDetails: (details: IEducation) => void;
     getUniversities: (value: string) => void;
 }
@@ -20,31 +23,35 @@ type Props = IProps;
 const ModalContent: React.FC<Props> = (props: Props, state: IState) => {
     const initialState = {
         university: "",
-        startYear: "",
-        endYear: "",
+        startYear: null,
+        endYear: null,
         degree: "",
         grade: "",
         field: "",
+        description: ""
     };
     const [formState, setFormState] = useState(initialState);
 
-    const handleChange = (event: any) => {
-        const updatedState = { ...formState, [event.target.name]: event.target.value };
+    const handleChange = (key: string, value: string | Date) => {
+        const updatedState = { ...formState, [key]: value };
         setFormState(updatedState);
     }
 
     const handleSubmit = () => {
-        setEducationDetails(formState);
+        props.setEducationDetails(formState);
+        props.handleToggle();
     }
 
     return (
         <div className="w-100 px-4">
-            <h6 className='text-left ml-3'>Add Your Education</h6>
+            <h6 className='text-left ml-3'>New Education Modal</h6>
             <div className='col-lg-12'>
                 <div className="row">
                     <div className="col-12">
                         <Label>University</Label>
                         <Select
+                            name="university"
+                            onSelect={handleChange}
                             options={props.universities}
                             getOptions={props.getUniversities}
                         />
@@ -53,42 +60,42 @@ const ModalContent: React.FC<Props> = (props: Props, state: IState) => {
                 <div className="row">
                     <div className="col-6">
                         <Label>Start Year</Label>
-                        <Input
-                            type="text"
+                        <DatePicker
                             name="startYear"
-                            value={formState.startYear}
-                            onChange={handleChange}
+                            placeholderText="Start Year"
+                            selected={formState.startYear}
+                            onChange={(date: Date) => { handleChange('startYear', date) }}
                         />
                     </div>
                     <div className="col-6">
                         <Label>End Year</Label>
-                        <Input
-                            type="text"
+                        <DatePicker
                             name="endYear"
-                            value={formState.endYear}
-                            onChange={handleChange}
+                            placeholderText="End Year"
+                            selected={formState.endYear}
+                            onChange={(date: Date) => { handleChange('endYear', date) }}
                         />
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-6">
                         <Label>Degree</Label>
                         <Input
                             type="text"
                             name="degree"
+                            placeholder="Degree"
                             value={formState.degree}
-                            onChange={handleChange}
+                            onChange={(e) => { handleChange('degree', e.target.value) }}
                         />
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col-12">
+                    <div className="col-6">
                         <Label>Grade</Label>
                         <Input
                             type="text"
                             name="grade"
+                            placeholder="Grade"
                             value={formState.grade}
-                            onChange={handleChange}
+                            onChange={(e) => { handleChange('grade', e.target.value) }}
                         />
                     </div>
                 </div>
@@ -98,8 +105,20 @@ const ModalContent: React.FC<Props> = (props: Props, state: IState) => {
                         <Input
                             type="text"
                             name="field"
+                            placeholder="Field"
                             value={formState.field}
-                            onChange={handleChange}
+                            onChange={(e) => { handleChange('field', e.target.value) }}
+                        />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <Label>Description</Label>
+                        <Textarea
+                            name="description"
+                            placeholder="Description"
+                            value={formState.description}
+                            onChange={(e) => { handleChange('description', e.target.value) }}
                         />
                     </div>
                 </div>

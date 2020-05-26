@@ -43,6 +43,7 @@ const MainScreen: React.FC<Props> = (props: Props) => {
                     >
                         <ModalContent
                             universities={props.universities}
+                            handleToggle={handleToggle}
                             setEducationDetails={props.setEducationDetails}
                             getUniversities={props.getUniversities}
                         />

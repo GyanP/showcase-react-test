@@ -21,8 +21,10 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
     const [name, setName] = useState<string>("");
 
     const handleSubmit = () => {
-        props.setUserDetails(name);
-        history.push('/main');
+        if (name !== "") {
+            props.setUserDetails(name);
+            history.push('/main');
+        }
     }
 
     return (
@@ -31,10 +33,11 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
             <p>Type you name and click "Enter" below to begin</p>
             <Input
                 name="username"
+                width={'24%'}
                 value={name}
                 onChange={(e: any) => { setName(e.target.value) }}
             />
-            <Button onClick={handleSubmit}>Enter</Button>
+            <Button className="mt-3" onClick={handleSubmit}>Enter</Button>
         </div>
     );
 };
