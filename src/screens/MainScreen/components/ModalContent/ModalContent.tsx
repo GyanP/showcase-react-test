@@ -4,7 +4,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Label, Input, Button, Textarea } from "../../../../sharedComponents";
 import { IEducation } from "../../types";
-import { setEducationDetails } from "../../actions";
 import { Select } from "../AsyncSelect";
 
 interface IProps {

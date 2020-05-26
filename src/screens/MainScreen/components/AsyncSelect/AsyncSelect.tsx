@@ -53,6 +53,7 @@ const Select: React.FC<Props> = (props: Props, state: State) => {
                 cacheOptions
                 loadOptions={loadOptions}
                 defaultOptions
+                value={selectedValue}
                 onChange={handleSelect}
                 onInputChange={handleInputChange}
             />
